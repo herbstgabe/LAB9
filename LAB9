@@ -1,0 +1,71 @@
+#Gabe herbst
+#9.1
+#lab
+
+
+# Open the file in 'a' (append) mode to add grades without overwriting existing content
+with open('grades.txt', 'a') as file:
+    while True:
+        # Input the grade from the user
+        grade = input("Enter a grade (or 'done' to finish): ")
+        
+        # If the user enters 'done', break out of the loop
+        if grade.lower() == 'done':
+            break
+        
+        # Write the grade to the file
+        file.write(grade + '\n')
+
+print("Grades have been successfully stored in grades.txt.")
+#GABE HERBST
+#LAB9.2
+# Open the file in 'r' (read) mode
+with open('grades.txt', 'r') as file:
+    # Read all the grades from the file
+    grades = file.readlines()
+
+# Convert each grade from string to float
+grades = [float(grade.strip()) for grade in grades]
+
+# Calculate total, count, and average of the grades
+total = sum(grades)
+count = len(grades)
+average = total / count if count > 0 else 0
+
+# Display individual grades
+print("Individual Grades:")
+for grade in grades:
+    print(grade)
+
+# Display total, count, and average
+print("\nTotal:", total)
+print("Count:", count)
+print("Average:", average)
+import csv
+#GABEHERBST
+#LAB9.3
+# Open the file in 'w' (write) mode with newline='' to prevent extra newline characters
+with open('grades.csv', 'w', newline='') as file:
+    # Create a CSV writer object
+    writer = csv.writer(file)
+    
+    # Write the header row
+    writer.writerow(['firstname', 'lastname', 'exam1grade', 'exam2grade', 'exam3grade'])
+    
+    while True:
+        # Input the student's information
+        first_name = input("Enter student's first name (or 'done' to finish): ")
+        
+        # If the user enters 'done', break out of the loop
+        if first_name.lower() == 'done':
+            break
+        
+        last_name = input("Enter student's last name: ")
+        exam1_grade = int(input("Enter exam 1 grade: "))
+        exam2_grade = int(input("Enter exam 2 grade: "))
+        exam3_grade = int(input("Enter exam 3 grade: "))
+        
+        # Write the student's information to the CSV file
+        writer.writerow([first_name, last_name, exam1_grade, exam2_grade, exam3_grade])
+
+print("Student records have been successfully written to grades.csv.")
